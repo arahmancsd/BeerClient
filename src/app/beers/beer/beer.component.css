@@ -1,0 +1,13 @@
+#primaryInfo{
+    margin-top: 20px;
+}
+.card
+{
+    border:none;
+}
+#back
+ {
+    font-size: medium;
+    padding-left: 10px;
+    cursor: pointer;
+}

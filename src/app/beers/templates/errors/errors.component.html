@@ -1,0 +1,10 @@
+<div class="alert alert-light" role="alert" *ngIf="error">
+  <h3>Error Occured!</h3>
+  <p>An error occured while retreiving data from server, we are sorry for inconvenience. Please help us to resolve this problem by sending the error to our technical team!</p>
+  <p> Error Status: {{error?.status}} </p> 
+  <p> Error Type: {{error?.type}} </p>
+  <p> Error Status Text: {{ error?.statusText}} </p> 
+  <p *ngIf="error.error?.errorMessage"> Error Message: {{ error?.error?.errorMessage}} </p> 
+  <p> Error Full Message: {{ error?.message}} </p> 
+  <p> Error Url: {{error?.url}}</p>
+  </div>

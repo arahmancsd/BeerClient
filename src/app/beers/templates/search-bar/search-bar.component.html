@@ -1,0 +1,13 @@
+<div class="input-group">
+    <select id="drpdownSearchCategory" name="drpdownSearchCategory" 
+    [(ngModel)]="SearchCategory" class="form-control">
+      <option *ngFor="let c of categories" [value]="c">{{c}}</option>
+    </select>
+    <input class="form-control" [(ngModel)]="SearchTerm" name="search" type="search" placeholder="Search" aria-label="Search"
+      id="txtSearch" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>

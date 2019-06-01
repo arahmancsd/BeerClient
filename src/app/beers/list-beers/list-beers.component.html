@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row" style="padding-top:20px;">
+    <div class="d-block mx-auto">
+      <h3>Beers Available</h3>
+    </div>
+
+    <div class="lds-ring" *ngIf="isLoader">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div>
+  <div class="row" style="padding-top:10px;">
+    <div class="col-md-6">
+      <app-search-bar (searchTermChanged)="searchTermChanged($event)" [SearchCategory]="searchCategory"
+        (searchCategoryChanged)="searchCategoryChanged($event)" [SearchTerm]="searchBeer"></app-search-bar>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <app-sort-category id="sortCategory" name="sortCategory" class="ml-auto"
+          (sortingChanged)="sortingChanged($event)"></app-sort-category>
+        <app-layout-view class="input-group-append" style="margin-left:5px;"
+          (layoutViewChanged)="layoutViewChanged($event)"></app-layout-view>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="resultSet?.data">
+    <div class="row w-100" *ngIf="layoutView">
+      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" *ngFor="let b of resultSet.data | paginate: pagging ">
+        <app-thumbnail [item]="b" (navigationChanging)="preserveSearchSettings($event)"></app-thumbnail>
+      </div>
+      <div class="col-md-12">
+        <div class="float-right">
+          <pagination-controls (pageChange)="changePage($event)" responsive="true" autoHide="true">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive" style="padding-top:10px;" *ngIf="!layoutView">
+      <app-servertable [columns]="tableViewColumns" [beers]="resultSet?.data" [pagination]="pagging"
+        (pageChanged)="changePage($event)" [dummyIconLink]="dummyIconLink"></app-servertable>
+    </div>
+
+  </div>
+  <div class="row" *ngIf="!isLoader && !isRecordFound">
+    <div class="alert alert-light" role="alert" *ngIf="!httpError && !isRecordFound">
+      <p>No result meet your search criteria, we sorry for inconvenience</p>
+    </div>
+    <app-errors [error]="httpError" *ngIf="httpError"></app-errors>
+  </div>
+</div>

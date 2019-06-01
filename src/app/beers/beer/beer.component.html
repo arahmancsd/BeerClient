@@ -1,0 +1,96 @@
+<div class="nav">
+  <a id="back" [routerLink]="['/beers']"><i class="fa fa-arrow-left fa-lg"> <span id="back">back to list</span></i></a>
+</div>
+<app-errors [error]="httpError" *ngIf="httpError"></app-errors>
+<div class="row" id="primaryInfo" *ngIf="singleBeer">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{singleBeer.nameDisplay}}</h5>
+        <img [src]="(singleBeer?.labels) ? singleBeer?.labels?.large : dummyLargeImageLink" class="img-fluid">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Available: {{singleBeer.available?.description}}</h5>
+        <p>ABV: {{ singleBeer.abv }} </p>
+        <p>Status:
+          <app-status [status]="singleBeer.status"></app-status>
+        </p>
+        <p ngbTooltip="Organic">
+          Organic: <app-organic [isOrganic]="singleBeer.isOrganic"></app-organic>
+          Retired: <app-retired [isRetired]="singleBeer.isRetired"></app-retired>
+        </p>
+        <p>Creation Date: {{singleBeer.createDate  | date: 'dd, MMM-yyyy' }}</p>
+        <p>Last Update Date: {{ singleBeer.updateDate | date: 'dd, MMM-yyyy' }}</p>
+
+        <div *ngIf="singleBeer?.glass">
+          <h5>Glass</h5>
+          <hr />
+          <p>Name: {{singleBeer.glass.name}}</p>
+          <p>Creation Date: {{singleBeer.glass.createDate}}</p>
+        </div>
+        <div *ngIf="singleBeer?.style">
+          <h5>Category Style</h5>
+          <hr />
+          <p>Category: {{singleBeer?.style?.category?.name}}</p>
+        </div>
+        <div *ngIf="singleBeer?.labels">
+          <h5>Icon</h5>
+          <hr />
+          <p><img [src]="singleBeer.labels.icon"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="!httpError">
+  <div class="card w-100 p-3 ">
+    <div class="card-header bg-info">
+      Style
+    </div>
+    <div class="card-body">
+      <p class="card-text text-justify">{{(singleBeer?.style) ? singleBeer.style.description : 'No style available'}}
+      </p>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="!httpError">
+  <div class="card w-100 p-3">
+    <div class="card-header bg-info">
+      Description
+    </div>
+    <div class="card-body">
+      <p class="card-text text-justify">
+        {{(singleBeer?.description) ? singleBeer.description : 'No description available'}}</p>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="!httpError">
+  <div class="card w-100 p-3">
+    <div class="card-header bg-info">
+      Food Pairings
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{(singleBeer?.foodPairings) ? singleBeer.foodPairings : 'No Food Pairing available'}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h4>Random beers picked for you</h4>
+  </div>
+</div>
+<app-errors [error]="randomSectionhttpError" *ngIf="randomSectionhttpError"></app-errors>
+<div class="row w-100" *ngIf="!randomSectionhttpError && randomBeerResultSet?.data">
+  <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" *ngFor="let b of randomBeerResultSet?.data 
+        | paginate: { itemsPerPage: 3,currentPage: p, totalItems: 9 }">
+    <app-thumbnail [item]="b"></app-thumbnail>
+  </div>
+  <div class="col-md-12" style="text-align: right;">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

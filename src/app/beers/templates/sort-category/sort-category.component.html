@@ -1,0 +1,5 @@
+<div class="form-group" id="divName">
+    <select id="drpdownSortBy" name="drpdownSortBy" [(ngModel)]="SortBy" class="form-control">
+      <option *ngFor="let d of sortColumns" [ngValue]="d">sort by: {{d.text}}</option>
+    </select>
+  </div>

@@ -1,0 +1,10 @@
+<div (click)="viewBeer(item.id)" class="card" style="width: 18rem; cursor: pointer; color: #0066c0;">
+  <img class="card-img-top" [src]="(item?.labels?.medium) ? item?.labels?.medium : dummyImageLink"
+    [alt]="item?.nameDisplay">
+  <div class="card-body">
+    <p class="card-text">{{ (item?.labels?.medium) ? item?.nameDisplay : item?.nameDisplay + ' ' + dummyText }} with abv
+      {{item?.abv}} Create Date {{item?.createDate | date: 'dd, MMM-yyyy' }}</p>
+    <p>Status: <img id="imgVerified" alt="item?.status" *ngIf="item?.status==='verified'"
+        [src]="(item?.status==='verified') ? dummyverifiedLink : dummayUnVerifiedLink"></p>
+  </div>
+</div>
