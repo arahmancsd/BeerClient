@@ -47,9 +47,9 @@ export interface Style {
     description: string;
     name: string;
     updateDate: Date;
-    category?: Category;
+    category?: StyleCategory;
 }
-export interface Category {
+export interface StyleCategory {
     id: number;
     createDate: Date;
     name: string;

@@ -28,7 +28,7 @@
   </div>
   <div class="row" *ngIf="resultSet?.data">
     <div class="row w-100" *ngIf="layoutView">
-      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" *ngFor="let b of resultSet.data | paginate: pagging ">
+      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" *ngFor="let b of resultSet.data | paginate: pagination ">
         <app-thumbnail [item]="b" (navigationChanging)="preserveSearchSettings($event)"></app-thumbnail>
       </div>
       <div class="col-md-12">
@@ -40,7 +40,7 @@
     </div>
 
     <div class="table-responsive" style="padding-top:10px;" *ngIf="!layoutView">
-      <app-servertable [columns]="tableViewColumns" [beers]="resultSet?.data" [pagination]="pagging"
+      <app-servertable [columns]="tableViewColumns" [beers]="resultSet?.data" [pagination]="pagination"
         (pageChanged)="changePage($event)" [dummyIconLink]="dummyIconLink"></app-servertable>
     </div>
 

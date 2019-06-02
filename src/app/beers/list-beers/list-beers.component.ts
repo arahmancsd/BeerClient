@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SortOption, Result, ServerPagination } from 'src/app/model/beer.model';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -16,7 +16,7 @@ export class ListBeersComponent implements OnInit {
   // this changes as the data is loaded from the server
   dummyIconLink = 'https://brewerydb-images.s3.amazonaws.com/beer/c4f2KE/upload_jjKJ7g-icon.png';
   tableViewColumns: string[] = ['Icon', 'Name', 'Abv', 'Create Date', 'Status', 'Organic', 'Retired', 'Action'];
-  pagging: ServerPagination = { currentPage: 0, itemsPerPage: 0, totalItems: 0 }; // default
+  pagination: ServerPagination = { currentPage: 0, itemsPerPage: 0, totalItems: 0 }; // default
   pageNumber = 1;
   isLoader = true; // for looading
   isRecordFound = false;
@@ -25,7 +25,7 @@ export class ListBeersComponent implements OnInit {
 
   // hold list of returned beers
   resultSet: Result; // main dataset
-  sortBy: SortOption; // handle sort option
+  private sortBy: SortOption; // handle sort option
   private searchCategory = 'Name'; // default search category value
   private searchBeer = ''; // search search string
   searchCategoryChanged(searchCategory: string) {
@@ -45,7 +45,7 @@ export class ListBeersComponent implements OnInit {
     this.sortBy = sortBy;
     this.filterBeerList();
   }
-  constructor(private beerService: BeerService , private router: Router, private helper: HelperService) {
+  constructor(private beerService: BeerService, private helper: HelperService) {
   }
 
   setInitialStage() {
@@ -55,11 +55,11 @@ export class ListBeersComponent implements OnInit {
   }
   loadBeers(params: HttpParams): void {
     this.setInitialStage();
-    this.beerService.getBeers(params).subscribe
+    this.beerService.getBeers(params, environment.apiKey).subscribe
       (result => {
         this.resultSet = result as Result;
         if (this.resultSet.data != null) {
-          this.helper.setPagging(this.pagging, this.resultSet.totalResults, this.resultSet.numberOfPages, this.pageNumber);
+          this.helper.setPagging(this.pagination, this.resultSet.totalResults, this.resultSet.numberOfPages, this.pageNumber);
           this.isRecordFound = true;
         } else {
           this.isRecordFound = false;

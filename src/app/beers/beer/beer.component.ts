@@ -29,7 +29,7 @@ export class BeerComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.beerID = params.get('id');
       this.singleBeer = null;
-      this.beerService.getBeer(this.beerID).subscribe(
+      this.beerService.getBeer(this.beerID, environment.apiKey).subscribe(
         (result: Beer) => {
           if (result["data"] != null) {
             this.singleBeer = result["data"] as Beer;
@@ -50,7 +50,7 @@ export class BeerComponent implements OnInit {
       .set('randomCount', '9') // manually get 9 beers
       .set('order', 'random');
 
-    this.beerService.getBeers(params).subscribe
+    this.beerService.getBeers(params, environment.apiKey).subscribe
       (result => {
         this.randomBeerResultSet = result as Result;
       },
