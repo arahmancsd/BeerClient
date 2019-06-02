@@ -14,6 +14,7 @@ import { HelperService } from 'src/app/services/helper.service';
 export class ListBeersComponent implements OnInit {
   // holds server side pagging configuration with default values of page number 1 and 50 items per page
   // this changes as the data is loaded from the server
+  urlPath = 'beers';
   dummyIconLink = 'https://brewerydb-images.s3.amazonaws.com/beer/c4f2KE/upload_jjKJ7g-icon.png';
   tableViewColumns: string[] = ['Icon', 'Name', 'Abv', 'Create Date', 'Status', 'Organic', 'Retired', 'Action'];
   pagination: ServerPagination = { currentPage: 0, itemsPerPage: 0, totalItems: 0 }; // default
@@ -55,7 +56,7 @@ export class ListBeersComponent implements OnInit {
   }
   loadBeers(params: HttpParams): void {
     this.setInitialStage();
-    this.beerService.getBeers(params, environment.apiKey).subscribe
+    this.beerService.getBeers(this.urlPath + '/', params, environment.apiKey).subscribe
       (result => {
         this.resultSet = result as Result;
         if (this.resultSet.data != null) {

@@ -57,7 +57,7 @@ describe('ListBeersComponent', () => {
   });
 
   it('should fetch/get http result', () => {
-    let resultSet: Result = { data: beers, numberOfPages: numberOfPages, totalResults: totalResults };
+    let resultSet: Result = { data: beers, numberOfPages: numberOfPages, totalResults: totalResults, status:"success" };
     spyOn(beerService, 'getBeers').and.returnValue(of(resultSet));
     component.ngOnInit();
     expect(component.resultSet).toEqual(resultSet);

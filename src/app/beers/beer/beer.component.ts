@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Result, Beer } from 'src/app/model/beer.model';
+import { Result, Beer, BeerResult } from 'src/app/model/beer.model';
 import { HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -11,6 +11,8 @@ import { BeerService } from 'src/app/services/beer.service';
   styleUrls: ['./beer.component.css']
 })
 export class BeerComponent implements OnInit {
+  listingUrlPath = 'beers';
+  singleUrlPath = 'beer';
   dummyLargeImageLink: string = environment.dummyLargeImageLink;
   beerID: string;
   singleBeer: Beer;
@@ -29,10 +31,10 @@ export class BeerComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.beerID = params.get('id');
       this.singleBeer = null;
-      this.beerService.getBeer(this.beerID, environment.apiKey).subscribe(
-        (result: Beer) => {
-          if (result["data"] != null) {
-            this.singleBeer = result["data"] as Beer;
+      this.beerService.getBeer(this.singleUrlPath, this.beerID, environment.apiKey).subscribe(
+        (result: BeerResult) => {
+          if (result.data!=null) {
+            this.singleBeer = result.data;
           }
         },
         (err: any) => {
@@ -50,7 +52,7 @@ export class BeerComponent implements OnInit {
       .set('randomCount', '9') // manually get 9 beers
       .set('order', 'random');
 
-    this.beerService.getBeers(params, environment.apiKey).subscribe
+    this.beerService.getBeers(this.listingUrlPath, params, environment.apiKey).subscribe
       (result => {
         this.randomBeerResultSet = result as Result;
       },

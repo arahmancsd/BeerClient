@@ -2,6 +2,13 @@ export interface Result {
     totalResults: number;
     numberOfPages: number;
     data?: Beer[];
+    status: string;
+}
+export interface BeerResult
+{
+    data: Beer;
+    message: string;
+    status: string;
 }
 export interface Beer {
     id: string;
