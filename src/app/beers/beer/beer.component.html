@@ -1,7 +1,13 @@
 <div class="nav">
   <a id="back" [routerLink]="['/beers']"><i class="fa fa-arrow-left fa-lg"> <span id="back">back to list</span></i></a>
 </div>
+<div class="row" style="padding-top:20px;">
+  <div class="d-block mx-auto" style="padding-bottom: 20px;">
+    <h3>Beer Detail</h3>
+  </div>
+</div>
 <app-errors [error]="httpError" *ngIf="httpError"></app-errors>
+
 <div class="row" id="primaryInfo" *ngIf="singleBeer">
   <div class="col-sm-6">
     <div class="card">
