@@ -21,17 +21,17 @@ describe('BeerService', () => {
       nameDisplay: 'BeerX', updateDate: new Date()
     },
   ];
-  const totalResults: number = 100;
-  const numberOfPages: number = 20;
+  const totalResults = 100;
+  const numberOfPages = 20;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, HttpClientTestingModule]
-    })
+    });
 
-    beerService = TestBed.get(BeerService)
+    beerService = TestBed.get(BeerService);
     httpMock = TestBed.get(HttpTestingController);
-    resultSet = { data: beers, numberOfPages: numberOfPages, totalResults: totalResults, status: "sucess" };
+    resultSet = { data: beers, numberOfPages, totalResults, status: 'sucess' };
   });
 
   it('should be created', () => {
@@ -74,7 +74,7 @@ describe('BeerService', () => {
       }
     );
 
-    let url: string = beerService.rootUrl + 'beers/?key=' + environment.apiKey;
+    const url: string = beerService.rootUrl + 'beers/?key=' + environment.apiKey;
     const mockRequest = httpMock.expectOne(url);
 
     expect(mockRequest.request.method).toBe('GET');
@@ -82,8 +82,8 @@ describe('BeerService', () => {
   });
 
   it('should return beer detail', () => {
-    let beerResult: BeerResult = { data: beers[0], message:'READ ONLY MODE: Request Successful', status:'success' }
-    let id: string = 'aG4Ie2';
+    const beerResult: BeerResult = { data: beers[0], message: 'READ ONLY MODE: Request Successful', status: 'success' };
+    const id = 'aG4Ie2';
 
     beerService.getBeer('beer', id, environment.apiKey).subscribe(
       result => {
@@ -92,7 +92,7 @@ describe('BeerService', () => {
       }
     );
 
-    let url: string = beerService.rootUrl + 'beer/' + id + '/?key=' + environment.apiKey;
+    const url: string = beerService.rootUrl + 'beer/' + id + '/?key=' + environment.apiKey;
     const mockRequest = httpMock.expectOne(url);
 
     expect(mockRequest.request.method).toBe('GET');
@@ -100,8 +100,8 @@ describe('BeerService', () => {
   });
 
   it('should return beer status failure object not found', () => {
-    let beerResult: BeerResult = { data: null, message:'The object you requested was not found', status:'failure' }
-    let id: string = 'aG4Ie1';
+    const beerResult: BeerResult = { data: null, message: 'The object you requested was not found', status: 'failure' };
+    const id = 'aG4Ie1';
 
     beerService.getBeer('beer', id, environment.apiKey).subscribe(
       result => {
@@ -110,7 +110,7 @@ describe('BeerService', () => {
       }
     );
 
-    let url: string = beerService.rootUrl + 'beer/' + id + '/?key=' + environment.apiKey;
+    const url: string = beerService.rootUrl + 'beer/' + id + '/?key=' + environment.apiKey;
     const mockRequest = httpMock.expectOne(url);
 
     expect(mockRequest.request.method).toBe('GET');
@@ -118,27 +118,24 @@ describe('BeerService', () => {
   });
 
   it('should return error 404 not found #beerid not exists', () => {
-    let id: string = 'aG4Ie1';
+    const id = 'aG4Ie1';
     beerService.getBeer('beer', id, environment.apiKey).subscribe(
       result => {
-    //        console.log('result ' + result);
-      },
-      (err: any) => {
-        
+      }, (err: any) => {
         expect(err).not.toBeNull();
         expect(err.status).toEqual(404);
       }
     );
 
-    let url: string = beerService.rootUrl + 'beer/' + id + '/?key=' + environment.apiKey;
+    const url: string = beerService.rootUrl + 'beer/' + id + '/?key=' + environment.apiKey;
     const mockRequest = httpMock.expectOne(url);
 
     expect(mockRequest.request.method).toBe('GET');
     mockRequest.flush('', { status: 404, statusText: 'Ok' });
   });
-  
+
   it('should return error 401 API key not found #key=123', () => {
-    let apiKey: string = "123";
+    const apiKey = '123';
     beerService.getBeers('beers', null, apiKey).subscribe(
       result => {
       },
@@ -148,10 +145,10 @@ describe('BeerService', () => {
       }
     );
 
-    let url: string = beerService.rootUrl + 'beers/?key='+apiKey;
+    const url: string = beerService.rootUrl + 'beers/?key=' + apiKey;
     const mockRequest = httpMock.expectOne(url);
 
     expect(mockRequest.request.method).toBe('GET');
     mockRequest.flush('', { status: 401, statusText: 'Ok' });
-  }); 
+  });
 });

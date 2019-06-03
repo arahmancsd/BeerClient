@@ -32,8 +32,8 @@ describe('ListBeersComponent', () => {
       nameDisplay: 'BeerX', updateDate: new Date()
     },
   ];
-  const totalResults: number = 100;
-  const numberOfPages: number = 20;
+  const totalResults = 100;
+  const numberOfPages = 20;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -57,40 +57,40 @@ describe('ListBeersComponent', () => {
   });
 
   it('should fetch/get http result', () => {
-    let resultSet: Result = { data: beers, numberOfPages: numberOfPages, totalResults: totalResults, status:"success" };
+    const resultSet: Result = { data: beers, numberOfPages, totalResults, status: 'success' };
     spyOn(beerService, 'getBeers').and.returnValue(of(resultSet));
     component.ngOnInit();
     expect(component.resultSet).toEqual(resultSet);
   });
 
   it('should add #searchCategory and #searchTerm in query string', () => {
-    let searchCategory = 'Name';
-    let searchTerm = '12th Of Never';
+    const searchCategory = 'Name';
+    const searchTerm = '12th Of Never';
 
     component.searchTermChanged(searchCategory);
     component.searchTermChanged(searchTerm);
 
-    let params = new HttpParams()
+    const params = new HttpParams()
       .set(searchCategory.toLowerCase(), searchTerm.toLowerCase());
 
     expect(component.generateQueryString()).toEqual(params);
   });
 
   it('should add #pageNumber to the query string', () => {
-    let pageNumber = 5;
+    const pageNumber = 5;
     component.pageNumber = pageNumber;
 
-    let params = new HttpParams()
+    const params = new HttpParams()
       .set('p', pageNumber.toString());
 
     expect(component.generateQueryString()).toEqual(params);
   });
 
   it('should add #sort #order to the query string', () => {
-    let sortBy: SortOption = { id: 1, text: 'Name', sortOrder: 'asc', columnToSort: 'name' };
+    const sortBy: SortOption = { id: 1, text: 'Name', sortOrder: 'asc', columnToSort: 'name' };
     component.sortingChanged(sortBy);
 
-    let params = new HttpParams()
+    const params = new HttpParams()
       .set('order', sortBy.columnToSort)
       .set('sort', sortBy.sortOrder);
 
@@ -98,31 +98,31 @@ describe('ListBeersComponent', () => {
   });
 
   it('should generate complete query string #p, ##searchTerm, #searchCategory, #sort, #order', () => {
-    let searchCategory = 'Name';
-    let searchTerm = '12th Of Never';
-    let pageNumber = 5;
-    let sortBy: SortOption = { id: 1, text: 'Name', sortOrder: 'asc', columnToSort: 'name' };
+    const searchCategory = 'Name';
+    const searchTerm = '12th Of Never';
+    const pageNumber = 5;
+    const sortBy: SortOption = { id: 1, text: 'Name', sortOrder: 'asc', columnToSort: 'name' };
 
     component.sortingChanged(sortBy);
     component.searchCategoryChanged(searchCategory);
     component.searchTermChanged(searchTerm);
     component.pageNumber = pageNumber;
 
-    let params = new HttpParams()
+    const params = new HttpParams()
       .set(searchCategory.trim().toLowerCase(), searchTerm.trim().toLowerCase())
       .set('p', pageNumber.toString())
       .set('order', sortBy.columnToSort)
-      .set('sort', sortBy.sortOrder)
+      .set('sort', sortBy.sortOrder);
 
     expect(component.generateQueryString()).toEqual(params);
   });
 
   it('should turn on #loader', () => {
 
-    let searchCategory = 'Name';
-    let searchTerm = '12th Of Never';
-    let pageNumber = 5;
-    let sortBy: SortOption = { id: 1, text: 'Name', sortOrder: 'asc', columnToSort: 'name' };
+    const searchCategory = 'Name';
+    const searchTerm = '12th Of Never';
+    const pageNumber = 5;
+    const sortBy: SortOption = { id: 1, text: 'Name', sortOrder: 'asc', columnToSort: 'name' };
 
     component.isLoader = false;
     component.sortingChanged(sortBy);

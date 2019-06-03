@@ -4,8 +4,7 @@ export interface Result {
     data?: Beer[];
     status: string;
 }
-export interface BeerResult
-{
+export interface BeerResult {
     data: Beer;
     message: string;
     status: string;

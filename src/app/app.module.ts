@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListBeersComponent } from './beers/list-beers/list-beers.component';
@@ -64,7 +64,7 @@ const appRoutes: Routes = [
     AngularFontAwesomeModule,
     AutocompleteLibModule ,
   ],
-  exports:[RouterModule],
+  exports: [RouterModule],
   providers: [BeerService, HelperService],
   bootstrap: [AppComponent]
 })

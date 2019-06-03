@@ -4,9 +4,6 @@
 
 export const environment = {
   production: false,
-  /*I understand sharing key without product is risky, however, I am sharing it only for the purpose of this coding quiz and allow
-  you to use this key to access beer service.
-  */
   apiKey: '',
   searchTerm: 'searchTerm',
   searchCategory: 'searchCategory',

@@ -9,7 +9,7 @@ describe('SearchBarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SearchBarComponent ],
-      imports:[FormsModule]
+      imports: [FormsModule]
     })
     .compileComponents();
   }));

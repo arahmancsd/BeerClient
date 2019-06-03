@@ -9,7 +9,7 @@ describe('SortCategoryComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SortCategoryComponent ],
-      imports:[FormsModule]
+      imports: [FormsModule]
     })
     .compileComponents();
   }));

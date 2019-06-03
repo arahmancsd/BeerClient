@@ -9,7 +9,7 @@ describe('LayoutViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LayoutViewComponent ],
-      imports:[FormsModule]
+      imports: [FormsModule]
     })
     .compileComponents();
   }));

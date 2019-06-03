@@ -33,7 +33,7 @@ export class BeerComponent implements OnInit {
       this.singleBeer = null;
       this.beerService.getBeer(this.singleUrlPath, this.beerID, environment.apiKey).subscribe(
         (result: BeerResult) => {
-          if (result.data!=null) {
+          if (result.data != null) {
             this.singleBeer = result.data;
           }
         },

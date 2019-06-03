@@ -11,7 +11,7 @@ export class ServertableComponent implements OnInit {
 
   constructor(private router: Router) { }
   @Input() columns: string[];
-  @Input() beers: Beer[]=[];
+  @Input() beers: Beer[] = [];
   @Input() pagination: ServerPagination = {itemsPerPage: 0, currentPage: 0, totalItems: 0};
   @Input() dummyIconLink: string;
   @Output() pageChanged: EventEmitter<number> = new EventEmitter<number>();

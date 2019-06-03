@@ -12,7 +12,7 @@ describe('ServertableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ServertableComponent ,StatusComponent, OrganicComponent, RetiredComponent],
+      declarations: [ ServertableComponent, StatusComponent, OrganicComponent, RetiredComponent],
       imports: [NgxPaginationModule, RouterTestingModule]
     })
     .compileComponents();

@@ -6,7 +6,7 @@ describe('HelperService', () => {
   let helper: HelperService;
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  beforeEach(()=>{    
+  beforeEach(() => {
     helper = TestBed.get(HelperService);
   });
 

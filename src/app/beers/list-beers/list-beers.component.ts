@@ -107,11 +107,13 @@ export class ListBeersComponent implements OnInit {
     this.helper.setLocallStorageItem(environment.searchCategory, this.searchCategory);
   }
   readPreservedSearchSetting() {
-    var savedValue = this.helper.readFromLocalStorage(environment.searchTerm);
-    if (savedValue != null)
+    let savedValue = this.helper.readFromLocalStorage(environment.searchTerm);
+    if ( savedValue != null ) {
       this.searchBeer = savedValue;
-    var savedValue = this.helper.readFromLocalStorage(environment.searchCategory);
-    if (savedValue != null)
+    }
+    savedValue = this.helper.readFromLocalStorage(environment.searchCategory);
+    if ( savedValue != null ) {
       this.searchCategory = savedValue;
+    }
   }
 }
