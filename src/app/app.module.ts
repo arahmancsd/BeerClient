@@ -8,7 +8,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { HomeComponent } from './home/home.component';
 import { SortCategoryComponent } from './beers/templates/sort-category/sort-category.component';
 import { LayoutViewComponent } from './beers/templates/layout-view/layout-view.component';
@@ -62,7 +61,6 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgxPaginationModule,
     AngularFontAwesomeModule,
-    AutocompleteLibModule ,
   ],
   exports: [RouterModule],
   providers: [BeerService, HelperService],
