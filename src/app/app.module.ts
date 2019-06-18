@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListBeersComponent } from './beers/list-beers/list-beers.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -56,7 +55,6 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     NgxPaginationModule,
