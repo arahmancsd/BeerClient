@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ServerPagination } from '../model/beer.model';
-import { throwError, pipe } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
